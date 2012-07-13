@@ -16,8 +16,8 @@
       }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -49,31 +49,59 @@
       <div class="hero-unit">
         <h1>Django User Group Cologne</h1>
         <p>Interessiert an Web-Entwicklung mit Django, dem Python Web-Framework?</p>
-        <p><strong>Gründungstreffen</strong> der neuen Django User Group Cologne am <strong>Samstag, den 28. Juli 2012</strong> im Anschlu&szlig; an den <a href="http://hcking.de/events/130-c4-workshop/dates/778">Django bei Mate und Waffeln-Workshop</a> in den Räumen des <strong>Chaos Computer Club Cologne</strong>, Heliosstr. 6a, in 50825 Köln-Ehrenfeld.</p>
+        <p><strong>Gr&uuml;ndungstreffen</strong> der neuen Django User Group Cologne am <strong>Samstag, den 28. Juli 2012</strong> im Anschlu&szlig; an den <a href="http://hcking.de/events/130-c4-workshop/dates/778">Django bei Mate und Waffeln-Workshop</a> in den R&auml;umen des <strong><a href="http://koeln.ccc.de/c4/faq/index.xml#anreise" target="_blank">Chaos Computer Club Cologne</a></strong>, Heliosstr. 6a, in 50825 K&ouml;ln-Ehrenfeld.</p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
         <div class="span4">
           <h2>Wann und Wo?</h2>
-           <p><strong>Samstag, 28. Juli 2012</strong> im Anschlu&szlig; an den <a href="http://hcking.de/events/130-c4-workshop/dates/778">Django bei Mate und Waffeln-Workshop</a> in den Räumen des <strong>Chaos Computer Club Cologne</strong>, Heliosstr. 6a, in 50825 Köln-Ehrenfeld.</p>
+            <p><strong>Samstag, 28. Juli 2012</strong> im Anschlu&szlig; an den <a href="http://hcking.de/events/130-c4-workshop/dates/778">Django bei Mate und Waffeln-Workshop</a> in den R&auml;umen des <strong><a href="http://koeln.ccc.de/c4/faq/index.xml#anreise" target="_blank">Chaos Computer Club Cologne</a></strong>, Heliosstr. 6a, in 50825 K&ouml;ln-Ehrenfeld.</p>
+            <div id="map" style="height:250px"></div>
+            <script>
+              // initialize the map on the "map" div
+              var map = new L.Map('map');
+
+              // create a CloudMade tile layer with style #997 (or use other provider of your choice)
+              var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/471375f3912c4c709df19e8235e0a79e/997/256/{z}/{x}/{y}.png', {
+                  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                  maxZoom: 18
+              });
+
+              // add the layer to the map, set the view to a given place and zoom
+              map.addLayer(cloudmade).setView(new L.LatLng(50.950573,6.913079), 17);
+
+              // create a marker in the given location and add it to the map
+              var marker = new L.Marker(new L.LatLng(50.950433,6.913000));
+              map.addLayer(marker);
+
+              // attach a given HTML content to the marker and immediately open it
+              marker.bindPopup("<strong>djangoCologne</strong><br/>in den Räumen des<br/>Chaos Computer Club Cologne").openPopup();
+            </script>
         </div>
         <div class="span4">
           <h2>Wer?</h2>
-           <p>Web-Entwickler und Interessierte, gerne auch ohne professionelle Erfahrung mit Django und anderen Web-Frameworks.</p>
-       </div>
+            <p>Web-Entwickler und Interessierte, gerne auch ohne professionelle Erfahrung mit Django und anderen Web-Frameworks.</p>
+          <h3>Ohne Erfahrung?</h3>
+            <p>Wie der Zufall will, findet vor unserem Gr&uuml;ndungstreffen der Workshop <a href="http://hcking.de/events/130-c4-workshop/dates/778">Django bei Mate und Waffeln-Workshop</a> statt. Dort entwickeln wir in wenigen Stunden ein Blog mit Django.<br />Komm vorbei!</p>
+          <h3>Django? Nie geh&ouml;rt.</h3>
+            <p>Django ist ein modernes Python-Webframework. Komm doch am <strong>Donnerstag, 26. Juli 2012 um 20:00 Uhr</strong> im <a href="http://koeln.ccc.de/c4/faq/index.xml#anreise" target="_blank">Chaos Computer Club Cologne</a> vorbei und h&ouml;r' Dir unseren Einf&uuml;hrungsvortrag an.
+        </div>
         <div class="span4">
           <h2>Mehr?</h2>
-          <p>Abonniere unsere Mailing-Liste f&uuml;r weitere Informationen zum Gr&uuml;ndungstreffen und weiteren geplanten Veranstaltungen:<br /><a href="mailto:django-user-group-cologne+subscribe@googlegroups.com">django-user-group-cologne@googlegroups.com</a></p>
-          <a href="mailto:django-user-group-cologne+subscribe@googlegroups.com"><button type="submit" class="btn btn-primary btn-medium">Jetzt eintragen!</button></a>
-          </form>
+            <p>Abonniere unsere Mailing-Liste f&uuml;r weitere Informationen zum Gr&uuml;ndungstreffen und weiteren geplanten Veranstaltungen:<br /><a href="mailto:django-user-group-cologne+subscribe@googlegroups.com">django-user-group-cologne@googlegroups.com</a></p>
+            <a href="mailto:django-user-group-cologne+subscribe@googlegroups.com"><button type="submit" class="btn btn-primary btn-medium">Jetzt eintragen!</button></a>
+            <p style="font-size:x-small;">Zum Beitreten einfach eine leere Mail an <em>django-user-group-cologne+subscribe@googlegroups.com</em> senden.</p>
         </div>
       </div>
 
       <hr>
 
       <footer>
-        <p style="float:left;">Django User Group Cologne</p>
+        <p style="float:left;">
+          Django User Group Cologne<br/>
+          <span style="font-size:x-small;">Impressum: Chaos Computer Club Cologne, Postfach 300305, 50773 Köln</span>
+        </p>
         <p style="float:right;">
           <a href="https://twitter.com/djangoCologne" class="twitter-follow-button" data-show-count="false" data-lang="de">@djangoCologne folgen</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
